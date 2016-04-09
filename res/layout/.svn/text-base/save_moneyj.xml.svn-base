@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="45dp"
+        android:background="#f04a3a" >
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:paddingLeft="10dp"
+            android:paddingRight="20dp"
+            android:src="@drawable/back" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="存钱"
+            android:textColor="#ffffff"
+            android:textSize="18sp" />
+
+        <!-- <TextView -->
+        <!-- android:id="@+id/tj" -->
+        <!-- android:layout_width="wrap_content" -->
+        <!-- android:layout_height="wrap_content" -->
+        <!-- android:layout_alignParentRight="true" -->
+        <!-- android:layout_centerVertical="true" -->
+        <!-- android:paddingLeft="10dp" -->
+        <!-- android:paddingRight="20dp" -->
+        <!-- android:text="添加" -->
+        <!-- android:textColor="#ffffff" -->
+        <!-- android:textSize="18sp" /> -->
+
+        <ImageView
+            android:id="@+id/wc"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:paddingLeft="10dp"
+            android:paddingRight="20dp"
+            android:src="@drawable/sure"
+            android:visibility="visible" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:paddingRight="10dp" >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="存钱数"
+                    android:textColor="#6B4C3A"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/savemoney"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="0.00"
+                    android:inputType="phone" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:paddingRight="10dp" >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="目标时间"
+                    android:textColor="#6B4C3A"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/sj"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/tab_edit"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="10dp"
+                    android:singleLine="true"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:paddingRight="10dp" >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="固定收入"
+                    android:textColor="#6B4C3A"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/sr"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="0.00"
+                    android:inputType="phone" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

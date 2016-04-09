@@ -1,0 +1,58 @@
+10
+
+dir
+3
+http://code.taobao.org/svn/WaCai_Project/WaCaiPrject/res
+http://code.taobao.org/svn/WaCai_Project
+
+
+
+2015-03-31T10:05:02.391162Z
+3
+ltliyue
+
+
+svn:special svn:externals svn:needs-lock
+
+
+
+
+
+
+
+
+
+
+
+fb026d9b-63d6-4e6e-a78d-45c981bfdba4
+
+anim
+dir
+
+drawable
+dir
+
+drawable-hdpi
+dir
+
+drawable-ldpi
+dir
+
+drawable-mdpi
+dir
+
+drawable-xhdpi
+dir
+
+drawable-xxhdpi
+dir
+
+layout
+dir
+
+values
+dir
+
+values-w820dp
+dir
+

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="45dp"
+        android:background="#f04a3a" >
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:paddingLeft="10dp"
+            android:paddingRight="20dp"
+            android:src="@drawable/back" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="添加账户"
+            android:textColor="#ffffff"
+            android:textSize="18sp" />
+
+        <!-- <TextView -->
+        <!-- android:id="@+id/tj" -->
+        <!-- android:layout_width="wrap_content" -->
+        <!-- android:layout_height="wrap_content" -->
+        <!-- android:layout_alignParentRight="true" -->
+        <!-- android:layout_centerVertical="true" -->
+        <!-- android:paddingLeft="10dp" -->
+        <!-- android:paddingRight="20dp" -->
+        <!-- android:text="添加" -->
+        <!-- android:textColor="#ffffff" -->
+        <!-- android:textSize="18sp" /> -->
+
+        <ImageView
+            android:id="@+id/wc"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:paddingLeft="10dp"
+            android:paddingRight="20dp"
+            android:src="@drawable/sure"
+            android:visibility="visible" />
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/zh"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:hint="账户名称" >
+    </EditText>
+
+    <EditText
+        android:id="@+id/je"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:hint="初始金额"
+        android:inputType="phone" >
+    </EditText>
+
+</LinearLayout>
