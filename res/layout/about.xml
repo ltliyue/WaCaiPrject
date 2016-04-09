@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#ffffff"
     android:orientation="vertical" >
 
     <RelativeLayout
@@ -43,7 +44,7 @@
         <ImageView
             android:id="@+id/wc"
             android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
+            android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:paddingLeft="10dp"
@@ -52,14 +53,21 @@
             android:visibility="invisible" />
     </RelativeLayout>
 
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/ic_launcher" />
+
     <TextView
         android:id="@+id/tv_reg_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:gravity="center_horizontal"
-        android:text="一账通 | 享受生活"
+        android:text="  一账通 | 享受生活"
         android:textSize="14sp"
         android:typeface="monospace" />
 
@@ -74,9 +82,14 @@
             android:id="@+id/tv_username"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="一账通"
-            android:textColor="#000000"
-            android:textSize="16sp" />
+            android:text="    一账通是一款记账APP，可以方便的记录日常开销，收入，并生成报表。
+            \n\n    1.日常记账
+            \n\n    2.根据支出类型和账户生成开销（收入）图表（饼图、柱状图）
+            \n\n    3.社区可以相互交流理财经验
+            \n\n    4.设定省钱目标，合理消费
+            \n\n    5,图案解锁，隐私保护"
+            android:textColor="#95000000"
+            android:textSize="14sp" />
     </LinearLayout>
 
 </LinearLayout>

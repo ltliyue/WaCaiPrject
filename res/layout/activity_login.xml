@@ -2,9 +2,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#ffffff"
     android:gravity="center"
     android:padding="20dp" >
-    
+
     <RelativeLayout
         android:id="@+id/rl_welcome"
         android:layout_width="match_parent"
@@ -121,18 +122,18 @@
         android:layout_marginTop="8.0dip"
         android:padding="2dp" >
 
-<!--         <Button -->
-<!--             android:id="@+id/btn_reset_psd" -->
-<!--             android:layout_width="wrap_content" -->
-<!--             android:layout_height="match_parent" -->
-<!--             android:layout_alignParentLeft="true" -->
-<!--             android:layout_centerVertical="true" -->
-<!--             android:background="#d3d3d3" -->
-<!--             android:paddingLeft="8.0dip" -->
-<!--             android:paddingRight="8.0dip" -->
-<!--             android:text="忘记密码" -->
-<!--             android:textColor="#FF8C00" -->
-<!--             android:textSize="12.0sp" /> -->
+        <!-- <Button -->
+        <!-- android:id="@+id/btn_reset_psd" -->
+        <!-- android:layout_width="wrap_content" -->
+        <!-- android:layout_height="match_parent" -->
+        <!-- android:layout_alignParentLeft="true" -->
+        <!-- android:layout_centerVertical="true" -->
+        <!-- android:background="#d3d3d3" -->
+        <!-- android:paddingLeft="8.0dip" -->
+        <!-- android:paddingRight="8.0dip" -->
+        <!-- android:text="忘记密码" -->
+        <!-- android:textColor="#FF8C00" -->
+        <!-- android:textSize="12.0sp" /> -->
 
         <Button
             android:id="@+id/btn_register"
@@ -153,9 +154,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/rl_last"
-        android:visibility="gone"
-        android:orientation="vertical" >
-        
+        android:orientation="vertical"
+        android:visibility="gone" >
+
         <ImageView
             android:id="@+id/new_login_btn"
             android:layout_width="match_parent"

@@ -38,7 +38,7 @@
         <!-- android:paddingRight="20dp" -->
         <!-- android:text="添加" -->
         <!-- android:textColor="#ffffff" -->
-        <!-- android:textSize="18sp" /> -->
+        <!-- android:textSize="14sp" /> -->
 
         <ImageView
             android:id="@+id/wc"
@@ -72,7 +72,7 @@
                 <LinearLayout
                     android:id="@+id/lin_w"
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="1dp"
                     android:layout_weight="1"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
@@ -87,7 +87,7 @@
                         android:gravity="center_vertical|left"
                         android:text=""
                         android:textColor="#868686"
-                        android:textSize="18sp" />
+                        android:textSize="14sp" />
                 </LinearLayout>
 
                 <TextView
@@ -100,7 +100,7 @@
                 <LinearLayout
                     android:id="@+id/lin_zc"
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="1dp"
                     android:layout_weight="1"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
@@ -114,7 +114,7 @@
                         android:gravity="center_vertical|left"
                         android:text="支出类型"
                         android:textColor="#868686"
-                        android:textSize="18sp" />
+                        android:textSize="14sp" />
                 </LinearLayout>
 
                 <TextView
@@ -127,7 +127,7 @@
                 <LinearLayout
                     android:id="@+id/lin_sr"
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="1dp"
                     android:layout_weight="1"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
@@ -141,7 +141,7 @@
                         android:gravity="center_vertical|left"
                         android:text="收入类型"
                         android:textColor="#868686"
-                        android:textSize="18sp" />
+                        android:textSize="14sp" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -156,7 +156,7 @@
                 <LinearLayout
                     android:id="@+id/sqxx"
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="1dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
@@ -170,7 +170,7 @@
                         android:gravity="center_vertical|left"
                         android:text="我发布的社区"
                         android:textColor="#868686"
-                        android:textSize="18sp" />
+                        android:textSize="14sp" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -185,7 +185,7 @@
                 <LinearLayout
                     android:id="@+id/tajs"
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="1dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
@@ -199,12 +199,12 @@
                         android:gravity="center_vertical|left"
                         android:text="图案解锁"
                         android:textColor="#868686"
-                        android:textSize="18sp" />
+                        android:textSize="14sp" />
 
                    <ToggleButton
                         android:id="@+id/tbtn_msg"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="55dp"
+                        android:layout_height="30dp"
                         android:layout_gravity="center_vertical"
                         android:layout_marginRight="8.0dip"
                         android:background="@drawable/selector_toggle"
@@ -225,7 +225,7 @@
                 <LinearLayout
                     android:id="@+id/xgmm"
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="1dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
@@ -239,7 +239,7 @@
                         android:gravity="center_vertical|left"
                         android:text="修改密码"
                         android:textColor="#868686"
-                        android:textSize="18sp" />
+                        android:textSize="14sp" />
                 </LinearLayout>
             </LinearLayout>
 
@@ -254,7 +254,7 @@
                 <LinearLayout
                     android:id="@+id/jztx"
                     android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="1dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
@@ -268,13 +268,13 @@
                         android:gravity="center_vertical|left"
                         android:text="记账提醒"
                         android:textColor="#868686"
-                        android:textSize="18sp" />
+                        android:textSize="14sp" />
                 </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="53dp"
                 android:layout_margin="10dp"
                 android:background="@drawable/setting_bg3"
                 android:orientation="vertical"
@@ -297,7 +297,7 @@
                         android:gravity="center_vertical|left"
                         android:text="关于一账通"
                         android:textColor="#868686"
-                        android:textSize="18sp" />
+                        android:textSize="14sp" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

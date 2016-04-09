@@ -13,7 +13,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnLongClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -33,6 +32,12 @@ import com.meyao.thingmarket.R;
 import com.meyao.thingmarket.model.Community;
 import com.meyao.thingmarket.model.User;
 
+/**
+ * 我发布的
+ * 
+ * @author MaryLee
+ * 
+ */
 public class MyCommunityListActivity extends Activity {
 	ImageView back;
 	TextView tj, zan;
@@ -102,10 +107,10 @@ public class MyCommunityListActivity extends Activity {
 					@Override
 					public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 						// TODO Auto-generated method stub
-								Intent intent = new Intent(MyCommunityListActivity.this, CommentListActivity.class);
-								intent.putExtra("objectId", weibos.get(arg2).getObjectId());
-								intent.putExtra("object", weibos.get(arg2));
-								startActivity(intent);
+						Intent intent = new Intent(MyCommunityListActivity.this, CommentListActivity.class);
+						intent.putExtra("objectId", weibos.get(arg2).getObjectId());
+						intent.putExtra("object", weibos.get(arg2));
+						startActivity(intent);
 					}
 				});
 				listView.setOnItemLongClickListener(new OnItemLongClickListener() {
@@ -121,14 +126,14 @@ public class MyCommunityListActivity extends Activity {
 								Community community = new Community();
 								community.setObjectId(weibos.get(arg2).getObjectId());
 								community.delete(MyCommunityListActivity.this, new DeleteListener() {
-									
+
 									@Override
 									public void onSuccess() {
 										// TODO Auto-generated method stub
 										ToastUtils.show(MyCommunityListActivity.this, "删除成功！");
 										onResume();
 									}
-									
+
 									@Override
 									public void onFailure(int arg0, String arg1) {
 										// TODO Auto-generated method stub
@@ -215,7 +220,7 @@ public class MyCommunityListActivity extends Activity {
 			holder.zan.setText(weibo.getLove() + "");
 			holder.zan.setTextColor(Color.parseColor("#000000"));
 
-			holder.tv_author.setText("用户：" + weibo.getAuthor().getUsername());
+			holder.tv_author.setText("" + weibo.getAuthor().getUsername());
 			holder.tv_content.setText(weibo.getContent());
 
 			holder.zan.setOnClickListener(new OnClickListener() {

@@ -16,6 +16,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import cn.bmob.v3.BmobQuery;
@@ -32,9 +33,16 @@ import com.meyao.thingmarket.model.Comment;
 import com.meyao.thingmarket.model.Community;
 import com.meyao.thingmarket.model.User;
 
+/**
+ * 评论详情
+ * 
+ * @author MaryLee
+ * 
+ */
 public class CommentListActivity extends Activity {
 	ImageView back;
 	TextView zan, pinglun;
+	LinearLayout lin_zan;
 	ListView listView;
 	EditText et_content;
 	Button btn_publish;
@@ -80,10 +88,11 @@ public class CommentListActivity extends Activity {
 		TextView tv_content = (TextView) findViewById(R.id.tv_content);
 		TextView tv_author = (TextView) findViewById(R.id.tv_author);
 		zan = (TextView) findViewById(R.id.zan);
+		lin_zan = (LinearLayout) findViewById(R.id.lin_zan);
 		pinglun = (TextView) findViewById(R.id.pinglun2);
 
 		tv_content.setText(community.getContent());
-		tv_author.setText("用户：" + community.getAuthor().getUsername());
+		tv_author.setText("" + community.getAuthor().getUsername());
 		zan.setText(community.getLove() + "");
 		back.setOnClickListener(new OnClickListener() {
 
@@ -93,11 +102,10 @@ public class CommentListActivity extends Activity {
 				finish();
 			}
 		});
-		zan.setOnClickListener(new OnClickListener() {
+		lin_zan.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
 				if (community.getLoveUser() != null) {
 					for (int i = 0; i < community.getLoveUser().size(); i++) {
 						System.out.println(community.getLoveUser().get(i));
@@ -168,7 +176,6 @@ public class CommentListActivity extends Activity {
 	private void publishComment(String content) {
 		final Comment comment = new Comment();
 		comment.setContent(content);
-		// comment.setPost(post);
 		comment.setAuthor(user);
 		comment.save(this, new SaveListener() {
 
@@ -254,7 +261,7 @@ public class CommentListActivity extends Activity {
 			final Comment comment = comments.get(position);
 
 			if (comment.getAuthor() != null) {
-				holder.tv_author.setText("评论人：" + comment.getAuthor().getUsername());
+				holder.tv_author.setText("" + comment.getAuthor().getUsername());
 			}
 
 			final String str = comment.getContent();

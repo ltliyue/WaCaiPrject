@@ -14,6 +14,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import cn.bmob.v3.BmobQuery;
@@ -26,6 +27,12 @@ import com.meyao.thingmarket.R;
 import com.meyao.thingmarket.model.Community;
 import com.meyao.thingmarket.model.User;
 
+/**
+ * 社区首页
+ * 
+ * @author MaryLee
+ * 
+ */
 public class CommunityListActivity extends Activity {
 	ImageView back;
 	TextView tj, zan;
@@ -117,6 +124,7 @@ public class CommunityListActivity extends Activity {
 			TextView tv_content;
 			TextView tv_author;
 			TextView zan;
+			LinearLayout lin_zan;
 		}
 
 		@Override
@@ -147,6 +155,7 @@ public class CommunityListActivity extends Activity {
 				holder = new ViewHolder();
 				holder.tv_content = (TextView) convertView.findViewById(R.id.tv_content);
 				holder.tv_author = (TextView) convertView.findViewById(R.id.tv_author);
+				holder.lin_zan = (LinearLayout) convertView.findViewById(R.id.lin_zan);
 				holder.zan = (TextView) convertView.findViewById(R.id.zan);
 				convertView.setTag(holder);
 			} else {
@@ -159,10 +168,10 @@ public class CommunityListActivity extends Activity {
 			holder.zan.setText(weibo.getLove() + "");
 			holder.zan.setTextColor(Color.parseColor("#000000"));
 
-			holder.tv_author.setText("用户：" + weibo.getAuthor().getUsername());
+			holder.tv_author.setText("" + weibo.getAuthor().getUsername());
 			holder.tv_content.setText(weibo.getContent());
 
-			holder.zan.setOnClickListener(new OnClickListener() {
+			holder.lin_zan.setOnClickListener(new OnClickListener() {
 
 				@Override
 				public void onClick(View arg0) {
