@@ -72,17 +72,19 @@ public class TypeList extends Activity {
 	}
 
 	private void queryObjects() {
+//		BmobQuery<TypeD> bmobQuery1 = new BmobQuery<TypeD>();
+//		bmobQuery1.addWhereEqualTo("uid", PreferencesUtils.getString(this, "username"));
+
+		BmobQuery<TypeD> bmobQuery2 = new BmobQuery<TypeD>();
+		bmobQuery2.addWhereNotEqualTo("isuser", 1);
+
+		List<BmobQuery<TypeD>> queries = new ArrayList<BmobQuery<TypeD>>();
+//		queries.add(bmobQuery1);
+		queries.add(bmobQuery2);
+
 		BmobQuery<TypeD> bmobQuery = new BmobQuery<TypeD>();
 		bmobQuery.addWhereEqualTo("type", type);
-		bmobQuery.addWhereEqualTo("uid", PreferencesUtils.getString(this, "username"));
-		bmobQuery.addWhereEqualTo("uid", null);
-		bmobQuery.setLimit(50);
-		// bmobQuery.addWhereNotEqualTo("age", 25);
-		// bmobQuery.addQueryKeys("objectId");
-		// bmobQuery.setLimit(10);
-		// bmobQuery.setSkip(15);
-		// bmobQuery.order("createdAt");
-		// bmobQuery.setCachePolicy(CachePolicy.CACHE_ELSE_NETWORK); //
+		bmobQuery.and(queries);
 		// 先从缓存取数据，如果没有的话，再从网络取。
 		bmobQuery.findObjects(this, new FindListener<TypeD>() {
 
@@ -93,8 +95,7 @@ public class TypeList extends Activity {
 					data.add(typeZC.getName());
 					objectIds.add(typeZC.getObjectId());
 				}
-				listView.setAdapter(new ArrayAdapter<String>(TypeList.this,
-						R.layout.list_text_items, data));
+				listView.setAdapter(new ArrayAdapter<String>(TypeList.this, R.layout.list_text_items, data));
 
 				listView.setOnItemClickListener(new OnItemClickListener() {
 
