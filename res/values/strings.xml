@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">一账通</string>
+    <string name="app_name">财务一账通</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-
     
     <string name="lockscreen_access_pattern_start">"开始绘制图案"</string>
     <string name="lockscreen_access_pattern_cleared">"图案已清除"</string>
