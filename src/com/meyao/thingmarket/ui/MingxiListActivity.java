@@ -20,6 +20,7 @@ import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.listener.FindListener;
 
+import com.baidu.mobstat.StatService;
 import com.meyao.thingmarket.R;
 import com.meyao.thingmarket.model.Jz_zc;
 import com.meyao.thingmarket.model.User;
@@ -231,5 +232,16 @@ public class MingxiListActivity extends Activity {
 			return convertView;
 		}
 
+	}
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+		StatService.onPause(this);
+	}
+	@Override
+	protected void onResume() {
+		super.onResume();
+		StatService.onResume(this);
 	}
 }

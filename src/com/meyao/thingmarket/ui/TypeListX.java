@@ -1,6 +1,7 @@
 package com.meyao.thingmarket.ui;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import android.app.Activity;
@@ -26,14 +27,13 @@ public class TypeListX extends Activity {
 	ListView listView;
 	TextView tj, title;
 	String pid;
-	List<String> data;
+	List<String> data = new ArrayList<String>();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.type);
-		data = new ArrayList<String>();
 		listView = (ListView) findViewById(R.id.list);
 		tj = (TextView) findViewById(R.id.tj);
 		title = (TextView) findViewById(R.id.title);
@@ -65,23 +65,16 @@ public class TypeListX extends Activity {
 
 	@Override
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
 		queryObjects();
 	}
 
 	private void queryObjects() {
+		String[] names = {PreferencesUtils.getString(this, "username"), "q"};
 		BmobQuery<TypeX> bmobQuery = new BmobQuery<TypeX>();
 		bmobQuery.addWhereEqualTo("pid", pid);
-		bmobQuery.addWhereEqualTo("uid", PreferencesUtils.getString(this, "username"));
-		bmobQuery.addWhereEqualTo("uid", null);
+		bmobQuery.addWhereContainedIn("uid", Arrays.asList(names));
 		bmobQuery.setLimit(50);
-		// bmobQuery.addWhereNotEqualTo("age", 25);
-		// bmobQuery.addQueryKeys("objectId");
-		// bmobQuery.setLimit(10);
-		// bmobQuery.setSkip(15);
-		// bmobQuery.order("createdAt");
-		// bmobQuery.setCachePolicy(CachePolicy.CACHE_ELSE_NETWORK); //
 		// 先从缓存取数据，如果没有的话，再从网络取。
 		bmobQuery.findObjects(this, new FindListener<TypeX>() {
 

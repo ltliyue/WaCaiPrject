@@ -6,7 +6,7 @@ import cn.bmob.v3.BmobObject;
 
 public class Jz_zc extends BmobObject {
 
-	private Double money;
+	private double money;
 	private String type;
 	private String account;
 	private String account2;
@@ -17,16 +17,24 @@ public class Jz_zc extends BmobObject {
 
 	private String temp;
 
-	public Double getMoney() {
-		return money;
-	}
-
-	public void setMoney(Double money) {
-		this.money = money;
-	}
+//	public Double getMoney() {
+//		return money;
+//	}
+//
+//	public void setMoney(Double money) {
+//		this.money = money;
+//	}
 
 	public String getType() {
 		return type;
+	}
+
+	public double getMoney() {
+		return money;
+	}
+
+	public void setMoney(double money) {
+		this.money = money;
 	}
 
 	public void setType(String type) {

@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.ToggleButton;
 import cn.trinea.android.common.util.PreferencesUtils;
 
+import com.baidu.mobstat.StatService;
 import com.meyao.thingmarket.AppManager;
 import com.meyao.thingmarket.R;
 import com.meyao.thingmarket.lock.App;
@@ -24,7 +25,9 @@ public class MeActivity extends Activity {
 	TextView yhm;
 	ImageView back;
 	LinearLayout lin_w, lin_zc, lin_sr, sqxx, xgmm, gy, tajs;
+	LinearLayout wtfk;
 	private ToggleButton tbtn_msg;
+	private ToggleButton tbtn_autologin;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -46,11 +49,16 @@ public class MeActivity extends Activity {
 		lin_w = (LinearLayout) findViewById(R.id.lin_w);
 		lin_zc = (LinearLayout) findViewById(R.id.lin_zc);
 		lin_sr = (LinearLayout) findViewById(R.id.lin_sr);
-		sqxx = (LinearLayout) findViewById(R.id.sqxx);
+		// sqxx = (LinearLayout) findViewById(R.id.sqxx);
 		xgmm = (LinearLayout) findViewById(R.id.xgmm);
 		gy = (LinearLayout) findViewById(R.id.gy);
 		tajs = (LinearLayout) findViewById(R.id.tajs);
+
+		wtfk = (LinearLayout) findViewById(R.id.wtfk);
 		tbtn_msg = (ToggleButton) findViewById(R.id.tbtn_msg);
+		tbtn_msg.setChecked(App.getInstance().getLockPatternUtils().savedPatternExists());
+		tbtn_autologin = (ToggleButton) findViewById(R.id.tbtn_autologin);
+		tbtn_autologin.setChecked(PreferencesUtils.getBoolean(this, "autologin"));
 
 		back = (ImageView) findViewById(R.id.back);
 		back.setOnClickListener(new OnClickListener() {
@@ -79,15 +87,16 @@ public class MeActivity extends Activity {
 				startActivity(mIntent);
 			}
 		});
-		sqxx.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
-				Intent mIntent = new Intent(MeActivity.this, MyCommunityListActivity.class);
-				startActivity(mIntent);
-			}
-		});
+		// sqxx.setOnClickListener(new OnClickListener() {
+		//
+		// @Override
+		// public void onClick(View arg0) {
+		// // TODO Auto-generated method stub
+		// Intent mIntent = new Intent(MeActivity.this,
+		// MyCommunityListActivity.class);
+		// startActivity(mIntent);
+		// }
+		// });
 		xgmm.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -117,28 +126,50 @@ public class MeActivity extends Activity {
 				startActivity(mIntent);
 			}
 		});
+		wtfk.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				Intent mIntent = new Intent(MeActivity.this, Tab3_FKActivity.class);
+				startActivity(mIntent);
+			}
+		});
+		tbtn_autologin.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				if (isChecked) {
+					PreferencesUtils.putBoolean(MeActivity.this, "savepwd", true);
+					PreferencesUtils.putBoolean(MeActivity.this, "autologin", true);
+				} else {
+					PreferencesUtils.putBoolean(MeActivity.this, "autologin", false);
+				}
+			}
+		});
 		tbtn_msg.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
 			@Override
 			public void onCheckedChanged(CompoundButton arg0, boolean state) {
-				if (tbtn_msg.isChecked()&&!App.getInstance().getLockPatternUtils().savedPatternExists()) {
-					// Intent mIntent = new Intent(MeActivity.this,
-					// GuideGesturePasswordActivity.class);
+				if (tbtn_msg.isChecked() && !App.getInstance().getLockPatternUtils().savedPatternExists()) {
 					Intent mIntent = new Intent(MeActivity.this, CreateGesturePasswordActivity.class);
 					startActivity(mIntent);
+					finish();
 				} else {
 					App.getInstance().getLockPatternUtils().clearLock();
 				}
-				// PreferencesUtils.putBoolean(MoreActivity.this,
-				// "messageState", state);
 			}
 		});
 	}
 
 	@Override
+	protected void onPause() {
+		super.onPause();
+		StatService.onPause(this);
+	}
+
+	@Override
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
-		tbtn_msg.setChecked(App.getInstance().getLockPatternUtils().savedPatternExists());
+		StatService.onResume(this);
 	}
 }

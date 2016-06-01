@@ -23,6 +23,7 @@ import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.SaveListener;
 import cn.trinea.android.common.util.PreferencesUtils;
 
+import com.baidu.mobstat.StatService;
 import com.meyao.thingmarket.R;
 import com.meyao.thingmarket.model.Account;
 import com.meyao.thingmarket.model.User;
@@ -115,9 +116,9 @@ public class AccountActivity extends Activity {
 
 	@Override
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
 		queryObjects();
+		StatService.onResume(this);
 	}
 
 	/**
@@ -228,5 +229,10 @@ public class AccountActivity extends Activity {
 			return convertView;
 		}
 
+	}
+	@Override
+	protected void onPause() {
+		super.onPause();
+		StatService.onPause(this);
 	}
 }

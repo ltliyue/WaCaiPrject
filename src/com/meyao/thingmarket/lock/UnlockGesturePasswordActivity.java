@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.meyao.thingmarket.R;
 import com.meyao.thingmarket.lock.LockPatternView.Cell;
+import com.meyao.thingmarket.ui.LoginActivity;
 import com.meyao.thingmarket.ui.SplashActivity;
 
 public class UnlockGesturePasswordActivity extends Activity {
@@ -51,24 +52,26 @@ public class UnlockGesturePasswordActivity extends Activity {
 		mShakeAnim = AnimationUtils.loadAnimation(this, R.anim.shake_x);
 	}
 
-	@Override
-	protected void onResume() {
-		super.onResume();
-
-		try {
-			if (!App.getInstance().getLockPatternUtils().savedPatternExists()) {
-				Intent mIntent = new Intent(UnlockGesturePasswordActivity.this, SplashActivity.class);
-				startActivity(mIntent);
-				finish();
-			}
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			Intent mIntent = new Intent(UnlockGesturePasswordActivity.this, SplashActivity.class);
-			startActivity(mIntent);
-			finish();
-		}
-	}
+	// @Override
+	// protected void onResume() {
+	// super.onResume();
+	//
+	// try {
+	// if (!App.getInstance().getLockPatternUtils().savedPatternExists()) {
+	// Intent mIntent = new Intent(UnlockGesturePasswordActivity.this,
+	// SplashActivity.class);
+	// startActivity(mIntent);
+	// finish();
+	// }
+	// } catch (Exception e) {
+	// // TODO Auto-generated catch block
+	// e.printStackTrace();
+	// Intent mIntent = new Intent(UnlockGesturePasswordActivity.this,
+	// SplashActivity.class);
+	// startActivity(mIntent);
+	// finish();
+	// }
+	// }
 
 	@Override
 	protected void onDestroy() {
@@ -99,14 +102,11 @@ public class UnlockGesturePasswordActivity extends Activity {
 				return;
 			if (App.getInstance().getLockPatternUtils().checkPattern(pattern)) {
 				mLockPatternView.setDisplayMode(LockPatternView.DisplayMode.Correct);
-				// Intent intent = new
-				// Intent(UnlockGesturePasswordActivity.this,
 				// GuideGesturePasswordActivity.class);
-				Intent intent = new Intent(UnlockGesturePasswordActivity.this, SplashActivity.class);
-
+				Intent intent = new Intent(UnlockGesturePasswordActivity.this, LoginActivity.class);
 				// 打开新的Activity
 				startActivity(intent);
-//				showToast("解锁成功");
+				// showToast("解锁成功");
 				finish();
 			} else {
 				mLockPatternView.setDisplayMode(LockPatternView.DisplayMode.Wrong);

@@ -1,6 +1,7 @@
 package com.meyao.thingmarket.ui;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import android.app.Activity;
@@ -27,6 +28,7 @@ public class TypeList extends Activity {
 	TextView tj, title;
 	String type;
 	List<String> objectIds = new ArrayList<String>();
+	List<String> data = new ArrayList<String>();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +54,7 @@ public class TypeList extends Activity {
 		} else {
 			title.setText("收入类型");
 		}
+//		queryObjects();
 		tj.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -66,31 +69,23 @@ public class TypeList extends Activity {
 
 	@Override
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
-		queryObjects();
+		data.clear();
+		objectIds.clear();
+		queryObjectsUserNew();
 	}
-
-	private void queryObjects() {
-//		BmobQuery<TypeD> bmobQuery1 = new BmobQuery<TypeD>();
-//		bmobQuery1.addWhereEqualTo("uid", PreferencesUtils.getString(this, "username"));
-
+	
+	private void queryObjectsUserNew() {
 		BmobQuery<TypeD> bmobQuery2 = new BmobQuery<TypeD>();
-		bmobQuery2.addWhereNotEqualTo("isuser", 1);
+		
+		String[] names = {PreferencesUtils.getString(this, "username"), ""};
+		bmobQuery2.addWhereEqualTo("type", type);
+		bmobQuery2.addWhereContainedIn("uid", Arrays.asList(names));
 
-		List<BmobQuery<TypeD>> queries = new ArrayList<BmobQuery<TypeD>>();
-//		queries.add(bmobQuery1);
-		queries.add(bmobQuery2);
-
-		BmobQuery<TypeD> bmobQuery = new BmobQuery<TypeD>();
-		bmobQuery.addWhereEqualTo("type", type);
-		bmobQuery.and(queries);
-		// 先从缓存取数据，如果没有的话，再从网络取。
-		bmobQuery.findObjects(this, new FindListener<TypeD>() {
+		bmobQuery2.findObjects(this, new FindListener<TypeD>() {
 
 			@Override
 			public void onSuccess(List<TypeD> object) {
-				List<String> data = new ArrayList<String>();
 				for (TypeD typeZC : object) {
 					data.add(typeZC.getName());
 					objectIds.add(typeZC.getObjectId());
@@ -101,7 +96,6 @@ public class TypeList extends Activity {
 
 					@Override
 					public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-						// TODO Auto-generated method stub
 						Intent mIntent = new Intent(TypeList.this, TypeListX.class);
 						mIntent.putExtra("pid", objectIds.get(arg2));
 						if (getIntent().getStringExtra("temp") != null) {
@@ -115,8 +109,7 @@ public class TypeList extends Activity {
 			}
 
 			@Override
-			public void onError(int code, String msg) {
-				// TODO Auto-generated method stub
+			public void onError(int arg0, String arg1) {
 			}
 		});
 	}

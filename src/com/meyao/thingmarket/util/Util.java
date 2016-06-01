@@ -4,8 +4,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.util.Log;
 
 /**
  * 工具类
@@ -36,17 +39,16 @@ public class Util {
 		}
 		return isValid;
 	}
-	
+
 	/**
 	 * 判断邮箱地址是否有效
 	 * 
 	 * @param email
 	 * @return true 有效 / false 无效
 	 */
-	public static boolean isEmailValid(String email)
-	{
+	public static boolean isEmailValid(String email) {
 		String regex = "\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*";
-        return email.matches(regex);
+		return email.matches(regex);
 	}
 
 	// 判断网络是否连接
@@ -54,8 +56,7 @@ public class Util {
 		if (context != null) {
 			ConnectivityManager mConnectivityManager = (ConnectivityManager) context
 					.getSystemService(Context.CONNECTIVITY_SERVICE);
-			NetworkInfo mNetworkInfo = mConnectivityManager
-					.getActiveNetworkInfo();
+			NetworkInfo mNetworkInfo = mConnectivityManager.getActiveNetworkInfo();
 			if (mNetworkInfo != null) {
 				return mNetworkInfo.isAvailable();
 			}
@@ -63,4 +64,23 @@ public class Util {
 		return false;
 	}
 
+	/**
+	 * 返回当前程序版本名
+	 */
+	public static String getAppVersionName(Context context) {
+		String versionName = "";
+		try {
+			// ---get the package info---
+			PackageManager pm = context.getPackageManager();
+			PackageInfo pi = pm.getPackageInfo(context.getPackageName(), 0);
+			versionName = pi.versionName;
+//			versioncode = pi.versionCode;
+			if (versionName == null || versionName.length() <= 0) {
+				return "";
+			}
+		} catch (Exception e) {
+			Log.e("VersionInfo", "Exception", e);
+		}
+		return versionName;
+	}
 }

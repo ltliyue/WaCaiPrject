@@ -1,8 +1,5 @@
 package com.meyao.thingmarket.ui;
 
-import h.there;
-
-import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.util.Calendar;
@@ -26,8 +23,9 @@ import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.UpdateListener;
-import cn.trinea.android.common.util.ToastUtils;
+import cn.bmob.v3.update.BmobUpdateAgent;
 
+import com.baidu.mobstat.StatService;
 import com.meyao.thingmarket.AppManager;
 import com.meyao.thingmarket.R;
 import com.meyao.thingmarket.model.Jz_zc;
@@ -40,7 +38,7 @@ public class MainActivity extends Activity {
 	TextView sr, zc, ce, mbje, kyhf, syts;
 	RadioButton mx, sq, zh, cq, w;
 	LinearLayout top, ddd;
-//	inearLayout eee, fff;
+	// inearLayout eee, fff;
 	Button btn_login;
 	float zcMoney, srMoney;
 	int year, month, chajutianshu;
@@ -72,9 +70,10 @@ public class MainActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		BmobUpdateAgent.update(this);
+		
 		AppManager.getAppManager().addActivity(this);
 		user = BmobUser.getCurrentUser(this, User.class);
 
@@ -106,8 +105,8 @@ public class MainActivity extends Activity {
 		syts = (TextView) findViewById(R.id.syts);
 
 		ddd = (LinearLayout) findViewById(R.id.ddd);
-//		eee = (LinearLayout) findViewById(R.id.eee);
-//		fff = (LinearLayout) findViewById(R.id.fff);
+		// eee = (LinearLayout) findViewById(R.id.eee);
+		// fff = (LinearLayout) findViewById(R.id.fff);
 
 		btn_login = (Button) findViewById(R.id.btn_login);
 
@@ -127,11 +126,11 @@ public class MainActivity extends Activity {
 
 	@Override
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
 		queryObjectsZC();
 		querySaveMoney();
-
+		StatService.onResume(this);
+//		MobclickAgent.onResume(this);
 	}
 
 	private void initListener() {
@@ -149,7 +148,9 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View arg0) {
 				// TODO Auto-generated method stub
-				Intent mIntent = new Intent(MainActivity.this, CommunityListActivity.class);
+				// Intent mIntent = new Intent(MainActivity.this,
+				// CommunityListActivity.class);
+				Intent mIntent = new Intent(MainActivity.this, CharMainActivity.class);
 				startActivity(mIntent);
 			}
 		});
@@ -254,7 +255,7 @@ public class MainActivity extends Activity {
 				DecimalFormat df = new DecimalFormat(".##");
 				if (srMoney - zcMoney == 0) {
 					ce.setText("0.0");
-				}else {
+				} else {
 					ce.setText(df.format(srMoney - zcMoney));
 				}
 				// BigDecimal b1 = new BigDecimal(Float.toString(srMoney));
@@ -329,8 +330,8 @@ public class MainActivity extends Activity {
 						return;
 					}
 					ddd.setVisibility(View.VISIBLE);
-//					eee.setVisibility(View.VISIBLE);
-//					fff.setVisibility(View.VISIBLE);
+					// eee.setVisibility(View.VISIBLE);
+					// fff.setVisibility(View.VISIBLE);
 					Message message = new Message();
 					message.obj = arg0.get(0);
 					message.what = 1;
@@ -344,5 +345,11 @@ public class MainActivity extends Activity {
 
 			}
 		});
+	}
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+		StatService.onPause (this);
 	}
 }

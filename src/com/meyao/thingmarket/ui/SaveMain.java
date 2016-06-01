@@ -13,8 +13,8 @@ import android.widget.TextView;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.BmobUser;
 import cn.bmob.v3.listener.FindListener;
-import cn.bmob.v3.listener.UpdateListener;
 
+import com.baidu.mobstat.StatService;
 import com.meyao.thingmarket.R;
 import com.meyao.thingmarket.model.SaveMoney;
 import com.meyao.thingmarket.model.User;
@@ -43,7 +43,7 @@ public class SaveMain extends Activity {
 		setContentView(R.layout.savemain);
 
 		user = BmobUser.getCurrentUser(this, User.class);
-//		TextView cancle = (TextView) findViewById(R.id.cancle);
+		// TextView cancle = (TextView) findViewById(R.id.cancle);
 		back = (ImageView) findViewById(R.id.back);
 		back.setOnClickListener(new OnClickListener() {
 
@@ -59,28 +59,28 @@ public class SaveMain extends Activity {
 		huafei = (TextView) findViewById(R.id.huafei);
 
 		querySaveMoney();
-//		cancle.setOnClickListener(new OnClickListener() {
-//
-//			@Override
-//			public void onClick(View arg0) {
-//				// TODO Auto-generated method stub
-//				user.setSaveMoney(false);
-//				user.update(SaveMain.this, new UpdateListener() {
-//
-//					@Override
-//					public void onSuccess() {
-//						// TODO Auto-generated method stub
-//
-//					}
-//
-//					@Override
-//					public void onFailure(int arg0, String arg1) {
-//						// TODO Auto-generated method stub
-//
-//					}
-//				});
-//			}
-//		});
+		// cancle.setOnClickListener(new OnClickListener() {
+		//
+		// @Override
+		// public void onClick(View arg0) {
+		// // TODO Auto-generated method stub
+		// user.setSaveMoney(false);
+		// user.update(SaveMain.this, new UpdateListener() {
+		//
+		// @Override
+		// public void onSuccess() {
+		// // TODO Auto-generated method stub
+		//
+		// }
+		//
+		// @Override
+		// public void onFailure(int arg0, String arg1) {
+		// // TODO Auto-generated method stub
+		//
+		// }
+		// });
+		// }
+		// });
 	}
 
 	private void querySaveMoney() {
@@ -105,5 +105,15 @@ public class SaveMain extends Activity {
 
 			}
 		});
+	}
+	@Override
+	protected void onPause() {
+		super.onPause();
+		StatService.onPause(this);
+	}
+	@Override
+	protected void onResume() {
+		super.onResume();
+		StatService.onResume(this);
 	}
 }

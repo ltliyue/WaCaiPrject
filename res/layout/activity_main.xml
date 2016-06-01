@@ -333,7 +333,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:drawableTop="@drawable/tab2"
-            android:text="社区" />
+            android:text="图表" />
 
         <RadioButton
             android:id="@+id/zh"

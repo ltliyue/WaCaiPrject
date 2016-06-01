@@ -2,14 +2,10 @@ package com.meyao.thingmarket.ui;
 
 import java.text.ParseException;
 import java.util.Calendar;
-import java.util.List;
-
-import org.json.JSONArray;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -19,19 +15,14 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.BmobUser;
-import cn.bmob.v3.listener.DeleteListener;
-import cn.bmob.v3.listener.FindCallback;
-import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.SaveListener;
 import cn.bmob.v3.listener.UpdateListener;
-import cn.trinea.android.common.util.PreferencesUtils;
 import cn.trinea.android.common.util.ToastUtils;
 
+import com.baidu.mobstat.StatService;
 import com.meyao.thingmarket.R;
 import com.meyao.thingmarket.model.SaveMoney;
-import com.meyao.thingmarket.model.TypeD;
 import com.meyao.thingmarket.model.User;
 import com.meyao.thingmarket.util.CheckDateNum;
 
@@ -53,7 +44,7 @@ public class SaveMoneyActivity extends Activity {
 		super.onCreate(savedInstanceState);
 
 		user = BmobUser.getCurrentUser(this, User.class);
-		
+
 		setContentView(R.layout.save_moneyj);
 		back = (ImageView) findViewById(R.id.back);
 		back.setOnClickListener(new OnClickListener() {
@@ -237,5 +228,14 @@ public class SaveMoneyActivity extends Activity {
 		}
 
 	};
-
+	@Override
+	protected void onPause() {
+		super.onPause();
+		StatService.onPause(this);
+	}
+	@Override
+	protected void onResume() {
+		super.onResume();
+		StatService.onResume(this);
+	}
 }

@@ -29,17 +29,17 @@
             android:textColor="#ffffff"
             android:textSize="18sp" />
 
-<!--         <TextView -->
-<!--             android:id="@+id/tj" -->
-<!--             android:layout_width="wrap_content" -->
-<!--             android:layout_height="fill_parent" -->
-<!--             android:layout_alignParentRight="true" -->
-<!--             android:gravity="center" -->
-<!--             android:paddingLeft="10dp" -->
-<!--             android:paddingRight="20dp" -->
-<!--             android:text="报表" -->
-<!--             android:textColor="#ffffff" -->
-<!--             android:textSize="14sp" /> -->
+        <!-- <TextView -->
+        <!-- android:id="@+id/tj" -->
+        <!-- android:layout_width="wrap_content" -->
+        <!-- android:layout_height="fill_parent" -->
+        <!-- android:layout_alignParentRight="true" -->
+        <!-- android:gravity="center" -->
+        <!-- android:paddingLeft="10dp" -->
+        <!-- android:paddingRight="20dp" -->
+        <!-- android:text="报表" -->
+        <!-- android:textColor="#ffffff" -->
+        <!-- android:textSize="14sp" /> -->
         <!-- <ImageView -->
         <!-- android:id="@+id/txt_wc" -->
         <!-- android:layout_width="wrap_content" -->
@@ -156,6 +156,7 @@
             android:gravity="center" />
 
         <TextView
+            android:id="@+id/srzh"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -163,8 +164,7 @@
             android:padding="8dp"
             android:text="账户支出"
             android:textColor="#666666"
-            android:textSize="14sp"
-            android:visibility="invisible" />
+            android:textSize="14sp" />
     </LinearLayout>
 
     <LinearLayout

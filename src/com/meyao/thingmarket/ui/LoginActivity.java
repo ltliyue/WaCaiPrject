@@ -1,9 +1,8 @@
 package com.meyao.thingmarket.ui;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Handler;
@@ -11,6 +10,9 @@ import android.os.Message;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -18,6 +20,8 @@ import android.widget.Toast;
 import cn.bmob.v3.listener.SaveListener;
 import cn.trinea.android.common.util.PreferencesUtils;
 
+import com.baidu.autoupdatesdk.BDAutoUpdateSDK;
+import com.baidu.autoupdatesdk.UICheckUpdateCallback;
 import com.meyao.thingmarket.R;
 import com.meyao.thingmarket.model.User;
 import com.meyao.thingmarket.util.Util;
@@ -32,6 +36,11 @@ public class LoginActivity extends Activity implements OnClickListener {
 
 	@SuppressWarnings("unused")
 	private static final String TAG = "LoginActicity";
+	
+	protected View loadingView;
+
+	private CheckBox check1;
+	private CheckBox check2;
 
 	private Button btnLogin;
 	private Button btnReg;
@@ -45,6 +54,8 @@ public class LoginActivity extends Activity implements OnClickListener {
 	private TextView mUserInfo;
 	private ImageView mUserLogo;
 	private ImageView mNewLoginButton;
+
+//	private ProgressDialog dialog;
 
 	Handler mHandler = new Handler() {
 
@@ -64,8 +75,20 @@ public class LoginActivity extends Activity implements OnClickListener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_login);
 		
+		setContentView(R.layout.activity_login);
+		loadingView = (View) findViewById(R.id.loading_view);
+//		BDAutoUpdateSDK.uiUpdateAction(this, new UICheckUpdateCallback() {
+//
+//			@Override
+//			public void onCheckComplete() {
+//				// TODO Auto-generated method stub
+//				System.out.println("aaaaaaaa");
+//			}
+//		});
+		check1 = (CheckBox) findViewById(R.id.check1);
+		check2 = (CheckBox) findViewById(R.id.check2);
+
 		btnLogin = (Button) findViewById(R.id.btn_login);
 		btnReg = (Button) findViewById(R.id.btn_register);
 		// btnResetPsd = (Button) findViewById(R.id.btn_reset_psd);
@@ -82,12 +105,39 @@ public class LoginActivity extends Activity implements OnClickListener {
 		mNewLoginButton = (ImageView) findViewById(R.id.new_login_btn);
 		mNewLoginButton.setOnClickListener(this);
 
-		getUserInfo();
+		check1.setChecked(PreferencesUtils.getBoolean(this, "savepwd", true));
+		check1.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				if (isChecked) {
+					PreferencesUtils.putBoolean(LoginActivity.this, "savepwd", true);
+				} else {
+					check2.setChecked(false);
+					PreferencesUtils.putBoolean(LoginActivity.this, "savepwd", false);
+				}
+			}
+		});
+		check2.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				if (isChecked) {
+					check1.setChecked(true);
+					PreferencesUtils.putBoolean(LoginActivity.this, "autologin", true);
+				}else {
+					PreferencesUtils.putBoolean(LoginActivity.this, "autologin", false);
+				}
+			}
+		});
+		etUsername.setText(PreferencesUtils.getString(this, "username"));
+		if (PreferencesUtils.getBoolean(this, "savepwd", true)) {
+			getUserInfo();
+		}
 	}
 
 	private void getUserInfo() {
-		etUsername.setText(PreferencesUtils.getString(this, "username"));
+		
 		etPassword.setText(PreferencesUtils.getString(this, "password"));
 	}
 
@@ -101,7 +151,9 @@ public class LoginActivity extends Activity implements OnClickListener {
 	public void onClick(View v) {
 		switch (v.getId()) {
 		// 登陆
+		
 		case R.id.btn_login:
+			loadingView.setVisibility(View.VISIBLE);
 			username = etUsername.getText().toString();
 			password = etPassword.getText().toString();
 
@@ -128,6 +180,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 					@Override
 					public void onFailure(int arg0, String msg) {
 						toast("用户名或密码错误");
+						loadingView.setVisibility(View.GONE);
 					}
 				});
 			}

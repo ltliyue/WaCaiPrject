@@ -1,6 +1,5 @@
 package com.meyao.thingmarket.ui;
 
-import java.text.ParseException;
 import java.util.Calendar;
 import java.util.List;
 
@@ -31,12 +30,12 @@ import cn.bmob.v3.listener.UpdateListener;
 import cn.trinea.android.common.util.PreferencesUtils;
 import cn.trinea.android.common.util.ToastUtils;
 
+import com.baidu.mobstat.StatService;
 import com.meyao.thingmarket.R;
 import com.meyao.thingmarket.model.Account;
 import com.meyao.thingmarket.model.Jz_zc;
 import com.meyao.thingmarket.model.SaveMoney;
 import com.meyao.thingmarket.model.User;
-import com.meyao.thingmarket.util.CheckDateNum;
 
 public class JYJActivity extends Activity {
 	LinearLayout lin_zh, lin_zhft, lin_sj, lin_zqr;
@@ -602,5 +601,14 @@ public class JYJActivity extends Activity {
 		}
 
 	};
-
+	@Override
+	protected void onPause() {
+		super.onPause();
+		StatService.onPause(this);
+	}
+	@Override
+	protected void onResume() {
+		super.onResume();
+		StatService.onResume(this);
+	}
 }
