@@ -1,5 +1,7 @@
 package com.meyao.thingmarket.lock;
 
+import com.meyao.thingmarket.CrashHandler;
+
 import android.app.Application;
 
 public class App extends Application {
@@ -15,6 +17,8 @@ public class App extends Application {
 		super.onCreate();
 		mInstance = this;
 		mLockPatternUtils = new LockPatternUtils(this);
+//		CrashHandler crashHandler = CrashHandler.getInstance();  
+//        crashHandler.init(getApplicationContext());  
 	}
 
 	public LockPatternUtils getLockPatternUtils() {

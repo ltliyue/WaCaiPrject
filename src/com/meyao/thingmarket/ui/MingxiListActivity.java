@@ -4,28 +4,37 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.BmobUser;
+import cn.bmob.v3.listener.DeleteListener;
 import cn.bmob.v3.listener.FindListener;
+import cn.bmob.v3.listener.UpdateListener;
 
 import com.baidu.mobstat.StatService;
+import com.meyao.thingmarket.BaseActivty;
 import com.meyao.thingmarket.R;
+import com.meyao.thingmarket.model.Account;
 import com.meyao.thingmarket.model.Jz_zc;
 import com.meyao.thingmarket.model.User;
 
-public class MingxiListActivity extends Activity {
+public class MingxiListActivity extends BaseActivty {
 	ImageView back;
 	ImageView minus, add;
 	TextView date, tj;
@@ -88,7 +97,6 @@ public class MingxiListActivity extends Activity {
 
 			@Override
 			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
 				if (month == 12) {
 					month = 1;
 					year++;
@@ -101,16 +109,13 @@ public class MingxiListActivity extends Activity {
 		});
 	}
 
+	int clickItemPosition;
+	MingxiAdapter accountAdapter;
+
 	private void queryObjects() {
 		BmobQuery<Jz_zc> bmobQuery = new BmobQuery<Jz_zc>();
 		bmobQuery.addWhereContains("time", year + "-" + (month < 10 ? "0" + month : month));
 		bmobQuery.addWhereEqualTo("uid", user.getUsername());
-		// bmobQuery.addWhereNotEqualTo("age", 25);
-		// bmobQuery.addQueryKeys("objectId");
-		// bmobQuery.setLimit(10);
-		// bmobQuery.setSkip(15);
-		// bmobQuery.order("createdAt");
-		// bmobQuery.setCachePolicy(CachePolicy.CACHE_ELSE_NETWORK); //
 		// 先从缓存取数据，如果没有的话，再从网络取。
 		bmobQuery.findObjects(this, new FindListener<Jz_zc>() {
 
@@ -121,54 +126,56 @@ public class MingxiListActivity extends Activity {
 				}
 				jz_zcs = object;
 
-				float a = 0;
-				for (int i = 0; i < jz_zcs.size(); i++) {
-					a += jz_zcs.get(i).getMoney();
-				}
-				MingxiAdapter accountAdapter = new MingxiAdapter(jz_zcs);
+//				float a = 0;
+//				for (int i = 0; i < jz_zcs.size(); i++) {
+//					a += jz_zcs.get(i).getMoney();
+//				}
+				accountAdapter = new MingxiAdapter(ct, jz_zcs);
 
 				list.setAdapter(accountAdapter);
+				list.setOnItemClickListener(new OnItemClickListener() {
 
-				// list.setOnItemClickListener(new OnItemClickListener() {
-				//
-				// @Override
-				// public void onItemClick(AdapterView<?> arg0, View arg1, int
-				// arg2, long arg3) {
-				// // TODO Auto-generated method stub
-				// if (getIntent().getStringExtra("temp") != null) {
-				// Intent mIntent = new Intent();
-				// mIntent.putExtra("accountname", jz_zcs.get(arg2).getName());
-				// setResult(100, mIntent);
-				// finish();
-				// }
-				// }
-				// });
-				// list.setOnLongClickListener(new OnLongClickListener() {
-				//
-				// @Override
-				// public boolean onLongClick(View arg0) {
-				// // TODO Auto-generated method stub
-				// AlertDialog.Builder builder = new
-				// AlertDialog.Builder(AccountActivity.this);
-				// builder.setTitle("是否删除该账户？");
-				// builder.setPositiveButton("确定", new
-				// DialogInterface.OnClickListener() {
-				// public void onClick(DialogInterface dialog, int whichButton)
-				// {
-				//
-				// }
-				// });
-				// builder.setNegativeButton("取消", new
-				// DialogInterface.OnClickListener() {
-				// public void onClick(DialogInterface dialog, int whichButton)
-				// {
-				// // 这里添加点击确定后的逻辑
-				// }
-				// });
-				// builder.create().show();
-				// return true;
-				// }
-				// });
+					@Override
+					public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+						
+//					}
+//				});
+//				list.setOnItemLongClickListener(new OnItemLongClickListener() {
+//
+//					@Override
+//					public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+						clickItemPosition = position;
+						final AlertDialog dialog = new AlertDialog.Builder(ct).create();
+						dialog.setCanceledOnTouchOutside(false);
+						dialog.show();
+						Window window = dialog.getWindow();
+						window.setContentView(R.layout.alertdialog);
+						TextView tv_title = (TextView) window.findViewById(R.id.name);
+						tv_title.setText("是否删除该记录？");
+						Button button1 = (Button) window.findViewById(R.id.btn1);
+						Button button2 = (Button) window.findViewById(R.id.btn2);
+						button1.setOnClickListener(new OnClickListener() {
+
+							@Override
+							public void onClick(View v) {
+								// TODO Auto-generated method stub
+								dialog.dismiss();
+
+							}
+						});
+						button2.setOnClickListener(new OnClickListener() {
+							@Override
+							public void onClick(View v) {
+								dialog.dismiss();
+								removeList(jz_zcs.get(clickItemPosition));
+								showLonding();
+								
+							}
+						});
+//						return false;
+					}
+
+				});
 			}
 
 			@Override
@@ -178,12 +185,72 @@ public class MingxiListActivity extends Activity {
 		});
 	}
 
+	/**
+	 * 删除
+	 * 
+	 * @param objectId
+	 */
+	private void removeList(final Jz_zc jz_zc) {
+		final double money = jz_zc.getMoney();
+
+		BmobQuery<Account> bmobQuery = new BmobQuery<Account>();
+		bmobQuery.addWhereEqualTo("name", jz_zc.getAccount());
+		bmobQuery.addWhereEqualTo("uid", jz_zc.getUid());
+		bmobQuery.findObjects(ct, new FindListener<Account>() {
+
+			@Override
+			public void onSuccess(List<Account> arg0) {
+				Account account = arg0.get(0);
+				if (jz_zc.getTemp().equals("1")) {
+					account.setMoney(account.getMoney() + money);
+				} else if (jz_zc.getTemp().equals("2")) {
+					account.setMoney(account.getMoney() - money);
+				} else {
+					showToast("抱歉，无法删除该条数据");
+					return;
+				}
+				jz_zcs.remove(clickItemPosition);
+				account.update(ct, new UpdateListener() {
+
+					@Override
+					public void onSuccess() {
+						jz_zc.delete(ct, new DeleteListener() {
+
+							@Override
+							public void onSuccess() {
+								missLonding();
+								accountAdapter.notifyDataSetChanged();
+								showToast("删除成功~");
+							}
+
+							@Override
+							public void onFailure(int arg0, String arg1) {
+								showToast(arg1);
+							}
+						});
+					}
+
+					@Override
+					public void onFailure(int arg0, String arg1) {
+						showToast(arg1);
+					}
+				});
+
+			}
+
+			@Override
+			public void onError(int arg0, String arg1) {
+				showToast(arg1);
+			}
+		});
+	}
+
 	class MingxiAdapter extends BaseAdapter {
 		List<Jz_zc> jzList;
-		LayoutInflater layoutInflater;
+		public Context context;
 
-		MingxiAdapter(List<Jz_zc> jzList) {
-			layoutInflater = getLayoutInflater();
+		MingxiAdapter(Context context, List<Jz_zc> jzList) {
+			this.context = context;
 			this.jzList = jzList;
 		}
 
@@ -207,31 +274,46 @@ public class MingxiListActivity extends Activity {
 
 		@Override
 		public View getView(int arg0, View convertView, ViewGroup arg2) {
-			// TODO Auto-generated method stub
-			convertView = layoutInflater.inflate(R.layout.item_mingxi, null);
-			if (jzList.get(arg0).getTemp().equals("3")) {
-				((TextView) convertView.findViewById(R.id.name)).setText(jzList.get(arg0).getAccount() + " 转 "
-						+ jzList.get(arg0).getAccount2());
+
+			ViewHolder holder = null;
+			if (convertView == null) {
+				holder = new ViewHolder();
+				convertView = View.inflate(context, R.layout.item_mingxi, null);
+				holder.name = (TextView) convertView.findViewById(R.id.name);
+				holder.time = (TextView) convertView.findViewById(R.id.time);
+				holder.money = (TextView) convertView.findViewById(R.id.q);
+				holder.account = (TextView) convertView.findViewById(R.id.account);
+				convertView.setTag(holder);
 			} else {
-				((TextView) convertView.findViewById(R.id.name)).setText(jzList.get(arg0).getAccount());
+				holder = (ViewHolder) convertView.getTag();
 			}
-			TextView money = (TextView) convertView.findViewById(R.id.q);
-			if (jzList.get(arg0).getTemp().equals("1")) {
-				((TextView) convertView.findViewById(R.id.time)).setText(jzList.get(arg0).getTime() + " "
-						+ jzList.get(arg0).getType());
+			if (jzList.get(arg0).getTemp().equals("3")) {
+				holder.name.setText(jzList.get(arg0).getAccount() + " 转 " + jzList.get(arg0).getAccount2());
 			} else {
-				((TextView) convertView.findViewById(R.id.time)).setText(jzList.get(arg0).getTime());
+				holder.name.setText(jzList.get(arg0).getAccount());
+			}
+			if (jzList.get(arg0).getTemp().equals("1")) {
+				holder.time.setText(jzList.get(arg0).getTime() + " " + jzList.get(arg0).getType());
+			} else {
+				holder.time.setText(jzList.get(arg0).getTime());
 
 			}
 			if (jzList.get(arg0).getTemp().equals("2")) {
-				money.setTextColor(Color.parseColor("#50c38c"));
+				holder.money.setTextColor(Color.parseColor("#50c38c"));
 			}
-			money.setText("￥" + jzList.get(arg0).getMoney() + "");
-			((TextView) convertView.findViewById(R.id.account)).setText(jzList.get(arg0).getBz());
+			holder.money.setText("￥" + jzList.get(arg0).getMoney() + "");
+			holder.account.setText(jzList.get(arg0).getBz());
 
 			return convertView;
 		}
 
+		class ViewHolder {
+			public TextView name;
+			public TextView time;
+			public TextView money;
+			public TextView account;
+
+		}
 	}
 
 	@Override
@@ -239,6 +321,7 @@ public class MingxiListActivity extends Activity {
 		super.onPause();
 		StatService.onPause(this);
 	}
+
 	@Override
 	protected void onResume() {
 		super.onResume();

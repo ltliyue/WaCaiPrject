@@ -18,13 +18,13 @@ import com.meyao.thingmarket.AppManager;
 import com.meyao.thingmarket.R;
 import com.meyao.thingmarket.lock.App;
 import com.meyao.thingmarket.lock.CreateGesturePasswordActivity;
-import com.meyao.thingmarket.lock.GuideGesturePasswordActivity;
 
 public class MeActivity extends Activity {
 
 	TextView yhm;
 	ImageView back;
-	LinearLayout lin_w, lin_zc, lin_sr, sqxx, xgmm, gy, tajs;
+	LinearLayout lin_w, lin_zc, lin_sr, sqxx, xgmm, gy;
+//	LinearLayout tajs;
 	LinearLayout wtfk;
 	private ToggleButton tbtn_msg;
 	private ToggleButton tbtn_autologin;
@@ -52,11 +52,11 @@ public class MeActivity extends Activity {
 		// sqxx = (LinearLayout) findViewById(R.id.sqxx);
 		xgmm = (LinearLayout) findViewById(R.id.xgmm);
 		gy = (LinearLayout) findViewById(R.id.gy);
-		tajs = (LinearLayout) findViewById(R.id.tajs);
+//		tajs = (LinearLayout) findViewById(R.id.tajs);
 
 		wtfk = (LinearLayout) findViewById(R.id.wtfk);
-		tbtn_msg = (ToggleButton) findViewById(R.id.tbtn_msg);
-		tbtn_msg.setChecked(App.getInstance().getLockPatternUtils().savedPatternExists());
+//		tbtn_msg = (ToggleButton) findViewById(R.id.tbtn_msg);
+//		tbtn_msg.setChecked(App.getInstance().getLockPatternUtils().savedPatternExists());
 		tbtn_autologin = (ToggleButton) findViewById(R.id.tbtn_autologin);
 		tbtn_autologin.setChecked(PreferencesUtils.getBoolean(this, "autologin"));
 
@@ -69,15 +69,15 @@ public class MeActivity extends Activity {
 				finish();
 			}
 		});
-		tajs.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
-				Intent mIntent = new Intent(MeActivity.this, GuideGesturePasswordActivity.class);
-				startActivity(mIntent);
-			}
-		});
+//		tajs.setOnClickListener(new OnClickListener() {
+//
+//			@Override
+//			public void onClick(View arg0) {
+//				// TODO Auto-generated method stub
+//				Intent mIntent = new Intent(MeActivity.this, GuideGesturePasswordActivity.class);
+//				startActivity(mIntent);
+//			}
+//		});
 		gy.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -146,19 +146,19 @@ public class MeActivity extends Activity {
 				}
 			}
 		});
-		tbtn_msg.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-			@Override
-			public void onCheckedChanged(CompoundButton arg0, boolean state) {
-				if (tbtn_msg.isChecked() && !App.getInstance().getLockPatternUtils().savedPatternExists()) {
-					Intent mIntent = new Intent(MeActivity.this, CreateGesturePasswordActivity.class);
-					startActivity(mIntent);
-					finish();
-				} else {
-					App.getInstance().getLockPatternUtils().clearLock();
-				}
-			}
-		});
+//		tbtn_msg.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+//
+//			@Override
+//			public void onCheckedChanged(CompoundButton arg0, boolean state) {
+//				if (tbtn_msg.isChecked() && !App.getInstance().getLockPatternUtils().savedPatternExists()) {
+//					Intent mIntent = new Intent(MeActivity.this, CreateGesturePasswordActivity.class);
+//					startActivity(mIntent);
+//					finish();
+//				} else {
+//					App.getInstance().getLockPatternUtils().clearLock();
+//				}
+//			}
+//		});
 	}
 
 	@Override

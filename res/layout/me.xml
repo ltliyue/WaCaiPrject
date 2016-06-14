@@ -176,47 +176,47 @@
                     android:textOn="" />
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/tajs"
-                android:layout_width="fill_parent"
-                android:layout_height="50dp"
-                android:layout_margin="10dp"
-                android:background="@drawable/setting_bg3"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingLeft="15dp"
-                android:paddingRight="10dp" >
+<!--             <LinearLayout -->
+<!--                 android:id="@+id/tajs" -->
+<!--                 android:layout_width="fill_parent" -->
+<!--                 android:layout_height="50dp" -->
+<!--                 android:layout_margin="10dp" -->
+<!--                 android:background="@drawable/setting_bg3" -->
+<!--                 android:gravity="center_vertical" -->
+<!--                 android:orientation="horizontal" -->
+<!--                 android:paddingLeft="15dp" -->
+<!--                 android:paddingRight="10dp" > -->
 
-                <!-- <LinearLayout -->
-                <!-- android:layout_width="fill_parent" -->
-                <!-- android:layout_height="1dp" -->
-                <!-- android:layout_marginLeft="10dp" -->
-                <!-- android:layout_marginRight="10dp" -->
-                <!-- android:layout_weight="1" -->
-                <!-- android:gravity="center_vertical" -->
-                <!-- android:orientation="horizontal" > -->
+<!--                 <LinearLayout -->
+<!--                 android:layout_width="fill_parent" -->
+<!--                 android:layout_height="1dp" -->
+<!--                 android:layout_marginLeft="10dp" -->
+<!--                 android:layout_marginRight="10dp" -->
+<!--                 android:layout_weight="1" -->
+<!--                 android:gravity="center_vertical" -->
+<!--                 android:orientation="horizontal" > -->
 
-                <TextView
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical|left"
-                    android:text="图案解锁"
-                    android:textColor="#363636"
-                    android:textSize="12sp" />
+<!--                 <TextView -->
+<!--                     android:layout_width="fill_parent" -->
+<!--                     android:layout_height="wrap_content" -->
+<!--                     android:layout_weight="1" -->
+<!--                     android:gravity="center_vertical|left" -->
+<!--                     android:text="图案解锁" -->
+<!--                     android:textColor="#363636" -->
+<!--                     android:textSize="12sp" /> -->
 
-                <ToggleButton
-                    android:id="@+id/tbtn_msg"
-                    android:layout_width="43dp"
-                    android:layout_height="25dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginRight="8.0dip"
-                    android:background="@drawable/selector_toggle"
-                    android:gravity="center_vertical"
-                    android:textOff=""
-                    android:textOn="" />
-                <!-- </LinearLayout> -->
-            </LinearLayout>
+<!--                 <ToggleButton -->
+<!--                     android:id="@+id/tbtn_msg" -->
+<!--                     android:layout_width="43dp" -->
+<!--                     android:layout_height="25dp" -->
+<!--                     android:layout_gravity="center_vertical" -->
+<!--                     android:layout_marginRight="8.0dip" -->
+<!--                     android:background="@drawable/selector_toggle" -->
+<!--                     android:gravity="center_vertical" -->
+<!--                     android:textOff="" -->
+<!--                     android:textOn="" /> -->
+<!--                 </LinearLayout> -->
+<!--             </LinearLayout> -->
 
             <LinearLayout
                 android:id="@+id/xgmm"

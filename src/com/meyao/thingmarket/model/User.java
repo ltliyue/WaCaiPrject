@@ -19,7 +19,7 @@ public class User extends BmobUser {
 	// private String regTime;
 
 	private String phone; // 电话
-	private boolean isSaveMoney;
+//	private boolean isSaveMoney;
 
 	public String getPhone() {
 		return phone;
@@ -29,12 +29,12 @@ public class User extends BmobUser {
 		this.phone = phone;
 	}
 
-	public boolean isSaveMoney() {
-		return isSaveMoney;
-	}
-
-	public void setSaveMoney(boolean isSaveMoney) {
-		this.isSaveMoney = isSaveMoney;
-	}
+//	public boolean isSaveMoney() {
+//		return isSaveMoney;
+//	}
+//
+//	public void setSaveMoney(boolean isSaveMoney) {
+//		this.isSaveMoney = isSaveMoney;
+//	}
 
 }

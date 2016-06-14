@@ -22,6 +22,7 @@ import cn.bmob.v3.listener.FindListener;
 import com.baidu.mobstat.StatService;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.components.Legend.LegendForm;
 import com.github.mikephil.charting.components.Legend.LegendPosition;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
@@ -42,8 +43,9 @@ public class Chart_PieChartActivity extends Activity {
 	ImageView imageView;
 	ImageView minus, add;
 	TextView date;
-//	String[] colors = new String[] { "#AFD8F8", "#8BBA00", "#FF8E46", "#04FE7C", "#8BBA00", "#FF8E46", "#04FE7C",
-//			"#8BBA00", "#FF8E46", "#04FE7C", "#8BBA00", "#FF8E46", "#04FE7C", };
+	// String[] colors = new String[] { "#AFD8F8", "#8BBA00", "#FF8E46",
+	// "#04FE7C", "#8BBA00", "#FF8E46", "#04FE7C",
+	// "#8BBA00", "#FF8E46", "#04FE7C", "#8BBA00", "#FF8E46", "#04FE7C", };
 	int temp = 0;
 	public static final String TAG = "ChartActivity";
 	int year, month;
@@ -81,7 +83,6 @@ public class Chart_PieChartActivity extends Activity {
 
 			@Override
 			public void onClick(View arg0) {
-				// TODO Auto-generated method stub
 				temp = 0;
 				if (month == 1) {
 					month = 12;
@@ -138,7 +139,7 @@ public class Chart_PieChartActivity extends Activity {
 
 	private void showChart(PieChart pieChart, PieData pieData) {
 
-		pieChart.setHoleRadius(50f); // 半径
+		pieChart.setHoleRadius(45f); // 半径
 		pieChart.setTransparentCircleRadius(64f); // 半透明圈
 
 		pieChart.setDescription("一账通");
@@ -152,7 +153,7 @@ public class Chart_PieChartActivity extends Activity {
 
 		if (getIntent().getStringExtra("bbtype").equals("zclx")) {
 			pieChart.setCenterText("支出类型"); // 饼状图中间的文字
-		}else {
+		} else {
 			pieChart.setCenterText("支出账户"); // 饼状图中间的文字
 		}
 
@@ -161,9 +162,11 @@ public class Chart_PieChartActivity extends Activity {
 
 		Legend mLegend = pieChart.getLegend(); // 设置比例图
 		mLegend.setPosition(LegendPosition.RIGHT_OF_CHART); // 最右边显示
-		// mLegend.setForm(LegendForm.LINE); //设置比例图的形状，默认是方形
-		mLegend.setXEntrySpace(7f);
+		mLegend.setForm(LegendForm.CIRCLE); // 设置比例图的形状，默认是方形
+		mLegend.setXEntrySpace(5f);
 		mLegend.setYEntrySpace(5f);
+		mLegend.setTextSize(11f);
+		mLegend.mNeededHeight = 50f;
 
 		pieChart.animateXY(1000, 1000); // 设置动画
 		// mChart.spin(2000, 0, 360);
@@ -200,7 +203,7 @@ public class Chart_PieChartActivity extends Activity {
 		ArrayList<Entry> yValues = new ArrayList<Entry>(); // yVals用来表示封装每个饼块的实际数据
 
 		maps = new HashMap<String, Double>();
-		
+
 		if (getIntent().getStringExtra("bbtype").equals("zclx")) {
 			for (Jz_zc jz_zc : object) {
 				addMaps(jz_zc.getType(), jz_zc.getMoney());
@@ -210,9 +213,9 @@ public class Chart_PieChartActivity extends Activity {
 				addMaps(jz_zc.getAccount(), jz_zc.getMoney());
 			}
 		}
-//		for (Jz_zc jz_zc : object) {
-//			addMaps(jz_zc.getType(), jz_zc.getMoney());
-//		}
+		// for (Jz_zc jz_zc : object) {
+		// addMaps(jz_zc.getType(), jz_zc.getMoney());
+		// }
 
 		// 饼图数据
 		int i = 0;
@@ -226,22 +229,29 @@ public class Chart_PieChartActivity extends Activity {
 		PieDataSet pieDataSet;
 		if (getIntent().getStringExtra("bbtype").equals("zclx")) {
 			pieDataSet = new PieDataSet(yValues, "支出类型"/* 显示在比例图上 */);
-			
-		}else {
-			pieDataSet = new PieDataSet(yValues, "支出账户"/* 显示在比例图上 */);			
+
+		} else {
+			pieDataSet = new PieDataSet(yValues, "支出账户"/* 显示在比例图上 */);
 		}
 		pieDataSet.setSliceSpace(2f); // 设置个饼状图之间的距离
 
 		ArrayList<Integer> colors = new ArrayList<Integer>();
 
 		// 饼图颜色
-		colors.add(Color.rgb(114, 188, 223));
-		colors.add(Color.rgb(255, 123, 124));
-		colors.add(Color.rgb(57, 135, 200));
-		colors.add(Color.rgb(205, 205, 205));
-		colors.add(Color.rgb(255, 123, 124));
+		// colors.add(Color.rgb(114, 188, 223));
+		// colors.add(Color.rgb(255, 123, 124));
+		// colors.add(Color.rgb(57, 135, 200));
+		// colors.add(Color.rgb(205, 205, 205));
+		// colors.add(Color.rgb(255, 123, 124));
+		colors.add(Color.rgb(22, 208, 246));// 蓝色
+		colors.add(Color.rgb(164, 219, 73));// 绿色
+		colors.add(Color.rgb(252, 201, 12));// 黄色
+		colors.add(Color.rgb(240, 181, 249));// 红色
+		colors.add(Color.rgb(197, 200, 255));// 紫色
 
 		pieDataSet.setColors(colors);
+		pieDataSet.setValueTextColor(Color.parseColor("#ffffff"));
+		pieDataSet.setValueTextSize(12f);
 
 		DisplayMetrics metrics = getResources().getDisplayMetrics();
 		float px = 5 * (metrics.densityDpi / 160f);
@@ -251,11 +261,13 @@ public class Chart_PieChartActivity extends Activity {
 
 		return pieData;
 	}
+
 	@Override
 	protected void onPause() {
 		super.onPause();
 		StatService.onPause(this);
 	}
+
 	@Override
 	protected void onResume() {
 		super.onResume();

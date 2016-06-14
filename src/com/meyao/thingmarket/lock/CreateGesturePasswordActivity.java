@@ -24,8 +24,8 @@ public class CreateGesturePasswordActivity extends Activity implements OnClickLi
 	private static final String KEY_UI_STAGE = "uiStage";
 	private static final String KEY_PATTERN_CHOICE = "chosenPattern";
 	private LockPatternView mLockPatternView;
-	private Button mFooterRightButton;
-	private Button mFooterLeftButton;
+	// private Button mFooterRightButton;
+	// private Button mFooterLeftButton;
 	protected TextView mHeaderText;
 	protected List<LockPatternView.Cell> mChosenPattern = null;
 	private Toast mToast;
@@ -87,16 +87,28 @@ public class CreateGesturePasswordActivity extends Activity implements OnClickLi
 	 */
 	protected enum Stage {
 
-		Introduction(R.string.lockpattern_recording_intro_header, LeftButtonMode.Cancel,
-				RightButtonMode.ContinueDisabled, ID_EMPTY_MESSAGE, true), HelpScreen(
-				R.string.lockpattern_settings_help_how_to_record, LeftButtonMode.Gone, RightButtonMode.Ok,
-				ID_EMPTY_MESSAGE, false), ChoiceTooShort(R.string.lockpattern_recording_incorrect_too_short,
-				LeftButtonMode.Retry, RightButtonMode.ContinueDisabled, ID_EMPTY_MESSAGE, true), FirstChoiceValid(
+		Introduction(R.string.lockpattern_recording_intro_header,
+				LeftButtonMode.Cancel,RightButtonMode.ContinueDisabled, 
+				ID_EMPTY_MESSAGE, true), 
+				
+				HelpScreen(R.string.lockpattern_settings_help_how_to_record, 
+				LeftButtonMode.Gone, RightButtonMode.Ok,ID_EMPTY_MESSAGE, false), 
+				
+				ChoiceTooShort(R.string.lockpattern_recording_incorrect_too_short,
+				LeftButtonMode.Retry, RightButtonMode.ContinueDisabled, ID_EMPTY_MESSAGE, true), 
+				
+				FirstChoiceValid(
 				R.string.lockpattern_pattern_entered_header, LeftButtonMode.Retry, RightButtonMode.Continue,
-				ID_EMPTY_MESSAGE, false), NeedToConfirm(R.string.lockpattern_need_to_confirm, LeftButtonMode.Cancel,
-				RightButtonMode.ConfirmDisabled, ID_EMPTY_MESSAGE, true), ConfirmWrong(
+				ID_EMPTY_MESSAGE, false), 
+				
+				NeedToConfirm(R.string.lockpattern_need_to_confirm, LeftButtonMode.Cancel,
+				RightButtonMode.ConfirmDisabled, ID_EMPTY_MESSAGE, true), 
+				
+				ConfirmWrong(
 				R.string.lockpattern_need_to_unlock_wrong, LeftButtonMode.Cancel, RightButtonMode.ConfirmDisabled,
-				ID_EMPTY_MESSAGE, true), ChoiceConfirmed(R.string.lockpattern_pattern_confirmed_header,
+				ID_EMPTY_MESSAGE, true), 
+				
+				ChoiceConfirmed(R.string.lockpattern_pattern_confirmed_header,
 				LeftButtonMode.Cancel, RightButtonMode.Confirm, ID_EMPTY_MESSAGE, false);
 
 		/**
@@ -153,14 +165,14 @@ public class CreateGesturePasswordActivity extends Activity implements OnClickLi
 		mLockPatternView.setOnPatternListener(mChooseNewLockPatternListener);
 		mLockPatternView.setTactileFeedbackEnabled(true);
 
-		mFooterRightButton = (Button) this.findViewById(R.id.right_btn);
-		mFooterLeftButton = (Button) this.findViewById(R.id.reset_btn);
-		mFooterRightButton.setOnClickListener(this);
-		mFooterLeftButton.setOnClickListener(this);
+		// mFooterRightButton = (Button) this.findViewById(R.id.right_btn);
+		// mFooterLeftButton = (Button) this.findViewById(R.id.reset_btn);
+		// mFooterRightButton.setOnClickListener(this);
+		// mFooterLeftButton.setOnClickListener(this);
 		initPreviewViews();
 		if (savedInstanceState == null) {
 			updateStage(Stage.Introduction);
-//			updateStage(Stage.HelpScreen);
+			// updateStage(Stage.HelpScreen);
 		} else {
 			// restore from previous state
 			final String patternString = savedInstanceState.getString(KEY_PATTERN_CHOICE);
@@ -268,8 +280,8 @@ public class CreateGesturePasswordActivity extends Activity implements OnClickLi
 
 		private void patternInProgress() {
 			mHeaderText.setText(R.string.lockpattern_recording_inprogress);
-			mFooterLeftButton.setEnabled(false);
-			mFooterRightButton.setEnabled(false);
+			// mFooterLeftButton.setEnabled(false);
+			// mFooterRightButton.setEnabled(false);
 		}
 	};
 
@@ -281,16 +293,16 @@ public class CreateGesturePasswordActivity extends Activity implements OnClickLi
 			mHeaderText.setText(stage.headerMessage);
 		}
 
-		if (stage.leftMode == LeftButtonMode.Gone) {
-			mFooterLeftButton.setVisibility(View.GONE);
-		} else {
-			mFooterLeftButton.setVisibility(View.VISIBLE);
-			mFooterLeftButton.setText(stage.leftMode.text);
-			mFooterLeftButton.setEnabled(stage.leftMode.enabled);
-		}
-
-		mFooterRightButton.setText(stage.rightMode.text);
-		mFooterRightButton.setEnabled(stage.rightMode.enabled);
+		// if (stage.leftMode == LeftButtonMode.Gone) {
+		// mFooterLeftButton.setVisibility(View.GONE);
+		// } else {
+		// mFooterLeftButton.setVisibility(View.VISIBLE);
+		// mFooterLeftButton.setText(stage.leftMode.text);
+		// mFooterLeftButton.setEnabled(stage.leftMode.enabled);
+		// }
+		//
+		// mFooterRightButton.setText(stage.rightMode.text);
+		// mFooterRightButton.setEnabled(stage.rightMode.enabled);
 
 		// same for whether the patten is enabled
 		if (stage.patternEnabled) {
@@ -337,45 +349,45 @@ public class CreateGesturePasswordActivity extends Activity implements OnClickLi
 
 	@Override
 	public void onClick(View v) {
-		switch (v.getId()) {
-		case R.id.reset_btn:
-			if (mUiStage.leftMode == LeftButtonMode.Retry) {
-				mChosenPattern = null;
-				mLockPatternView.clearPattern();
-				updateStage(Stage.Introduction);
-			} else if (mUiStage.leftMode == LeftButtonMode.Cancel) {
-				// They are canceling the entire wizard
-				finish();
-			} else {
-				throw new IllegalStateException("left footer button pressed, but stage of " + mUiStage
-						+ " doesn't make sense");
-			}
-
-			break;
-		case R.id.right_btn:
-			if (mUiStage.rightMode == RightButtonMode.Continue) {
-				if (mUiStage != Stage.FirstChoiceValid) {
-					throw new IllegalStateException("expected ui stage " + Stage.FirstChoiceValid + " when button is "
-							+ RightButtonMode.Continue);
-				}
-				updateStage(Stage.NeedToConfirm);
-			} else if (mUiStage.rightMode == RightButtonMode.Confirm) {
-				if (mUiStage != Stage.ChoiceConfirmed) {
-					throw new IllegalStateException("expected ui stage " + Stage.ChoiceConfirmed + " when button is "
-							+ RightButtonMode.Confirm);
-				}
-				saveChosenPatternAndFinish();
-			} else if (mUiStage.rightMode == RightButtonMode.Ok) {
-				if (mUiStage != Stage.HelpScreen) {
-					throw new IllegalStateException("Help screen is only mode with ok button, but " + "stage is "
-							+ mUiStage);
-				}
-				mLockPatternView.clearPattern();
-				mLockPatternView.setDisplayMode(DisplayMode.Correct);
-				updateStage(Stage.Introduction);
-			}
-			break;
-		}
+//		switch (v.getId()) {
+//		case R.id.reset_btn:
+//			if (mUiStage.leftMode == LeftButtonMode.Retry) {
+//				mChosenPattern = null;
+//				mLockPatternView.clearPattern();
+//				updateStage(Stage.Introduction);
+//			} else if (mUiStage.leftMode == LeftButtonMode.Cancel) {
+//				// They are canceling the entire wizard
+//				finish();
+//			} else {
+//				throw new IllegalStateException("left footer button pressed, but stage of " + mUiStage
+//						+ " doesn't make sense");
+//			}
+//
+//			break;
+//		case R.id.right_btn:
+//			if (mUiStage.rightMode == RightButtonMode.Continue) {
+//				if (mUiStage != Stage.FirstChoiceValid) {
+//					throw new IllegalStateException("expected ui stage " + Stage.FirstChoiceValid + " when button is "
+//							+ RightButtonMode.Continue);
+//				}
+//				updateStage(Stage.NeedToConfirm);
+//			} else if (mUiStage.rightMode == RightButtonMode.Confirm) {
+//				if (mUiStage != Stage.ChoiceConfirmed) {
+//					throw new IllegalStateException("expected ui stage " + Stage.ChoiceConfirmed + " when button is "
+//							+ RightButtonMode.Confirm);
+//				}
+//				saveChosenPatternAndFinish();
+//			} else if (mUiStage.rightMode == RightButtonMode.Ok) {
+//				if (mUiStage != Stage.HelpScreen) {
+//					throw new IllegalStateException("Help screen is only mode with ok button, but " + "stage is "
+//							+ mUiStage);
+//				}
+//				mLockPatternView.clearPattern();
+//				mLockPatternView.setDisplayMode(DisplayMode.Correct);
+//				updateStage(Stage.Introduction);
+//			}
+//			break;
+//		}
 	}
 
 	private void saveChosenPatternAndFinish() {

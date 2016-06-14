@@ -72,7 +72,7 @@ public class RegisterActivity extends Activity implements OnClickListener {
 				bu.setUsername(username);
 				bu.setPassword(password);
 				bu.setPhone(phone);
-				bu.setSaveMoney(false);
+//				bu.setSaveMoney(false);
 				bu.signUp(this, new SaveListener() {
 					@Override
 					public void onSuccess() {
