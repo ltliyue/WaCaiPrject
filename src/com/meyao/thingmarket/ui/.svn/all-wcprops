@@ -1,0 +1,209 @@
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/WaCaiProject/!svn/ver/3/WaCaiPrject2.0/src/com/meyao/thingmarket/ui
+END
+ChartActivity.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/WaCaiProject/!svn/ver/3/WaCaiPrject2.0/src/com/meyao/thingmarket/ui/ChartActivity.java
+END
+Chart_qnActivity.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/WaCaiProject/!svn/ver/3/WaCaiPrject2.0/src/com/meyao/thingmarket/ui/Chart_qnActivity.java
+END
+MainTabActivity.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/WaCaiProject/!svn/ver/3/WaCaiPrject2.0/src/com/meyao/thingmarket/ui/MainTabActivity.java
+END
+JYJActivity.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/WaCaiProject/!svn/ver/4/WaCaiPrject2.0/src/com/meyao/thingmarket/ui/JYJActivity.java
+END
+MainActivity.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/WaCaiProject/!svn/ver/3/WaCaiPrject2.0/src/com/meyao/thingmarket/ui/MainActivity.java
+END
+MeActivity.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/WaCaiProject/!svn/ver/4/WaCaiPrject2.0/src/com/meyao/thingmarket/ui/MeActivity.java
+END
+TypeListX.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/WaCaiProject/!svn/ver/4/WaCaiPrject2.0/src/com/meyao/thingmarket/ui/TypeListX.java
+END
+CharMainActivity.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/WaCaiProject/!svn/ver/3/WaCaiPrject2.0/src/com/meyao/thingmarket/ui/CharMainActivity.java
+END
+AccountActivity.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/WaCaiProject/!svn/ver/4/WaCaiPrject2.0/src/com/meyao/thingmarket/ui/AccountActivity.java
+END
+LoginActivity.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/WaCaiProject/!svn/ver/4/WaCaiPrject2.0/src/com/meyao/thingmarket/ui/LoginActivity.java
+END
+CommunityListActivity.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/WaCaiProject/!svn/ver/4/WaCaiPrject2.0/src/com/meyao/thingmarket/ui/CommunityListActivity.java
+END
+SaveMain.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/WaCaiProject/!svn/ver/3/WaCaiPrject2.0/src/com/meyao/thingmarket/ui/SaveMain.java
+END
+SplashActivity.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/WaCaiProject/!svn/ver/4/WaCaiPrject2.0/src/com/meyao/thingmarket/ui/SplashActivity.java
+END
+MingxiListActivity.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/WaCaiProject/!svn/ver/3/WaCaiPrject2.0/src/com/meyao/thingmarket/ui/MingxiListActivity.java
+END
+Chart_zc_zhActivity.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/WaCaiProject/!svn/ver/3/WaCaiPrject2.0/src/com/meyao/thingmarket/ui/Chart_zc_zhActivity.java
+END
+FragmentPage1.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/WaCaiProject/!svn/ver/3/WaCaiPrject2.0/src/com/meyao/thingmarket/ui/FragmentPage1.java
+END
+RegisterActivity.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/WaCaiProject/!svn/ver/3/WaCaiPrject2.0/src/com/meyao/thingmarket/ui/RegisterActivity.java
+END
+CommentListActivity.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/WaCaiProject/!svn/ver/4/WaCaiPrject2.0/src/com/meyao/thingmarket/ui/CommentListActivity.java
+END
+MyCommunityListActivity.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/WaCaiProject/!svn/ver/4/WaCaiPrject2.0/src/com/meyao/thingmarket/ui/MyCommunityListActivity.java
+END
+CommunityAddListActivity.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/WaCaiProject/!svn/ver/4/WaCaiPrject2.0/src/com/meyao/thingmarket/ui/CommunityAddListActivity.java
+END
+ShopActivity.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/WaCaiProject/!svn/ver/3/WaCaiPrject2.0/src/com/meyao/thingmarket/ui/ShopActivity.java
+END
+AccountAddActivity.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/WaCaiProject/!svn/ver/4/WaCaiPrject2.0/src/com/meyao/thingmarket/ui/AccountAddActivity.java
+END
+UpdatePwdActivity.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/WaCaiProject/!svn/ver/4/WaCaiPrject2.0/src/com/meyao/thingmarket/ui/UpdatePwdActivity.java
+END
+Chart_PieChartActivity.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/WaCaiProject/!svn/ver/3/WaCaiPrject2.0/src/com/meyao/thingmarket/ui/Chart_PieChartActivity.java
+END
+ResetActivity.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/WaCaiProject/!svn/ver/3/WaCaiPrject2.0/src/com/meyao/thingmarket/ui/ResetActivity.java
+END
+AboutActivity.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/WaCaiProject/!svn/ver/3/WaCaiPrject2.0/src/com/meyao/thingmarket/ui/AboutActivity.java
+END
+Chart_BarChartActivity.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/WaCaiProject/!svn/ver/3/WaCaiPrject2.0/src/com/meyao/thingmarket/ui/Chart_BarChartActivity.java
+END
+Chart_PieChart_SRActivity.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/WaCaiProject/!svn/ver/3/WaCaiPrject2.0/src/com/meyao/thingmarket/ui/Chart_PieChart_SRActivity.java
+END
+Chart_LineChartActivity.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/WaCaiProject/!svn/ver/3/WaCaiPrject2.0/src/com/meyao/thingmarket/ui/Chart_LineChartActivity.java
+END
+TypeList.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/WaCaiProject/!svn/ver/4/WaCaiPrject2.0/src/com/meyao/thingmarket/ui/TypeList.java
+END
+TypeAddActivity.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/WaCaiProject/!svn/ver/4/WaCaiPrject2.0/src/com/meyao/thingmarket/ui/TypeAddActivity.java
+END
+Tab3_FKActivity.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/WaCaiProject/!svn/ver/4/WaCaiPrject2.0/src/com/meyao/thingmarket/ui/Tab3_FKActivity.java
+END
+FragmentPage2.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/WaCaiProject/!svn/ver/3/WaCaiPrject2.0/src/com/meyao/thingmarket/ui/FragmentPage2.java
+END
+SaveMoneyActivity.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/WaCaiProject/!svn/ver/4/WaCaiPrject2.0/src/com/meyao/thingmarket/ui/SaveMoneyActivity.java
+END
